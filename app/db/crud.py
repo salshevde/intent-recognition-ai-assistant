@@ -40,7 +40,7 @@ async def find_user(user_id:str)->Optional[dict]:
 async def store_chat(user_input: UserInput, response: Response):
 
     chat = Chat(
-        user_id = user_input.user_id,
+        username = user_input.username,
         input_text = user_input.text,
         response = response,
         timestamp=datetime.utcnow(),

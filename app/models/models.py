@@ -9,7 +9,7 @@ class User(BaseModel):
     
 class UserInput(BaseModel):
     text : str
-    user_id : Optional[str] = "anonymous"
+    username : Optional[str] = "anonymous"
 
 class Response(BaseModel):
     intent : str
@@ -18,7 +18,7 @@ class Response(BaseModel):
     entities: Optional[Dict[str,str]] = None
 
 class Chat(BaseModel):
-    user_id : str
+    username : str
     input_text: str
     response: Response
     timestamp: datetime

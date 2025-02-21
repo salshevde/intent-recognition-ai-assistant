@@ -9,6 +9,15 @@ from ..db.crud import create_user,find_user,login_user,store_chat,get_user_chats
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
+@router.get("/")
+async def home():
+    try:
+        return {
+            "message":"Welcome to Intent Recognition system!!!"
+        }
+    except ValueError as e:
+        raise HTTPException(status_code=500,detail=str(e))
+
 @router.post("/register")
 async def create_new_user(user: User):
     try:
@@ -26,11 +35,9 @@ async def login(user: User):
 @router.post('/process',response_model=Response)
 async def process_input(user_input: UserInput):
     try:
-        logger.info(f"Processing input for user: {user_input.user_id}")
+        logger.info(f"Processing input for user: {user_input.username}")
 
-        user_data = await find_user(user_input.user_id)
-        
-        intent = await recognize_intent(user_input.text, user_data)
+        intent = await recognize_intent(user_input.text, user_input.username)
 
         await store_chat(
             user_input=user_input,

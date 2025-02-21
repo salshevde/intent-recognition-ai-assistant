@@ -1,4 +1,5 @@
 fastapi[standard]
 pydantic
+pydantic_settings
 motor
-
+google-generativeai
