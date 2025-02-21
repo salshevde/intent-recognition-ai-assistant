@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.log
+
+# Virtual Environment
+venv/
+.env
+.env.local
+.env.*.example
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs & Debugging
+logs/
+*.log
+debug.log
+
+
+# Database & Cache
+*.sqlite3
+*.db
+*.pkl
+*.json
+*.bson
+dump.rdb
+
+# Node Modules (if using frontend)
+node_modules/
+npm-debug.log
+
+# Compiled Code
+*.out
+*.o
+*.pyc
+
+# 
+todo
