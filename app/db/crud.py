@@ -30,6 +30,13 @@ async def login_user(user: User)->Optional[dict]:
             "user_id": str(user["_id"])
         }
     return None
+async def find_user(user_id:str)->Optional[dict]:
+
+    if user:= await db.users.find_one({"_id":user_id}):
+        return{
+            "username":user["username"]
+        }
+    return None
 async def store_chat(user_input: UserInput, response: Response):
 
     chat = Chat(

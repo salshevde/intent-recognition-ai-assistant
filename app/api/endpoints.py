@@ -3,7 +3,7 @@ from typing import List, Annotated
 import logging
 from ..models.models import Response, UserInput, Chat,User
 from ..services.intent_recognition import recognize_intent
-from ..db.crud import create_user,login_user,store_chat,get_user_chats
+from ..db.crud import create_user,find_user,login_user,store_chat,get_user_chats
 
 
 router = APIRouter()
@@ -24,23 +24,20 @@ async def login(user: User):
 
 
 @router.post('/process',response_model=Response)
-async def process_input(user_input: UserInput
-):
+async def process_input(user_input: UserInput):
     try:
         logger.info(f"Processing input for user: {user_input.user_id}")
-        intent = await recognize_intent(user_input.text)
-        result = Response(
-            intent=intent,
-            confidence=1.0,
-            response=f"Processed text: {user_input.text}",
-            entities={"dummy_key": "dummy_value"}
-        )
+
+        user_data = await find_user(user_input.user_id)
+        
+        intent = await recognize_intent(user_input.text, user_data)
+
         await store_chat(
             user_input=user_input,
-            response=result
+            response=intent
         )
-        return result
-#FIXME
+        return intent
+
     except Exception as e:
         except_str = "Error processing input"
         logger.error(f"{except_str}: {str(e)}",exc_info=True)

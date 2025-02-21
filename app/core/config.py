@@ -21,8 +21,21 @@ class Settings(BaseSettings):
     DATABASE_NAME: str = "voice_assistant"
 
     OPENAI_API_KEY: str = ""
-    AI_MODEL:str = "gpt-3.5-turbo"
+    GEMINI_API_KEY: str = ""
+    
+    GEMINI_AI_MODEL:str = ""
+    OPENAI_AI_MODEL:str = ""
 
+    PROMPT_TEMPLATE:str ="""
+        Analyze the following user input and determine the intent. 
+        Respond in JSON format with these fields:
+        - intent: one word that defines what the intention of the text is
+        - confidence: A float between 0 and 1 indicating your confidence in your answer
+        - response: A natural language response to the user
+
+        Now analyze this input: "{text}"
+        Respond only with the JSON, no other text.
+        """
     class Config:
         env_file = ".env"
 

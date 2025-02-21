@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *.so
 *.log
+test.py
 
 # Virtual Environment
 venv/
