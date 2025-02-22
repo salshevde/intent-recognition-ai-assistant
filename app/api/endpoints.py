@@ -50,14 +50,14 @@ async def process_input(user_input: UserInput):
         logger.error(f"{except_str}: {str(e)}",exc_info=True)
         raise HTTPException(status_code=500,detail=f"{except_str}")
 
-@router.post('/chat/{user_id}',response_model=List[Chat])
-async def user_chats(user_id: str):
+@router.post('/chat/{username}',response_model=List[Chat])
+async def user_chats(username: str):
     try:
-        return await get_user_chats(user_id)
+        return await get_user_chats(username)
     except Exception as e:
-        except_str = "Error fetching interaction"
+        except_str = "Error fetching chat"
         logger.error(f"{except_str}: {str(e)}",exc_info=True)
-        raise HTTPException(status_code=500,detail=f"{except_str}")#FIXME
+        raise HTTPException(status_code=404,detail=f"{except_str}")#FIXME
         
 
 

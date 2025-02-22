@@ -49,7 +49,14 @@ async def store_chat(user_input: UserInput, response: Response):
     await db.chats.insert_one(chat.dict())
     return chat
 
-async def get_user_chats(user_id: str , limit:int=100):
-    cursor = db.chats.find({"user_id":user_id}).sort("timestamp",-1).limit(limit)
+async def get_user_chats(username: str , limit:int=100):
+    query = {"username": username}
+    found_user = await db.users.find_one({"username": username})
+    if not found_user:
+        raise ValueError("User not found")
+
+    cursor = db.chats.find(query).sort("timestamp", -1).limit(limit)
     chats = await cursor.to_list(length=limit)
     return [Chat(**chat) for chat in chats]
+
+ 
