@@ -6,10 +6,6 @@ This repository contains a FastAPI-based intent recognition service, containeriz
 
 ## Tech Stack
 
-**Client:** React, Redux, TailwindCSS
-
-**Server:** Node, Express
-
 **Programming Language:** Python
 
 **Framework:** FastAPI
@@ -55,6 +51,12 @@ Run with docker
 ```
 docker run -p 8000:8000 intent-recognition
 ```
+
+# Testing
+```
+  pytest tests/api.py
+```
+
 # API Reference
 
 #### Home
