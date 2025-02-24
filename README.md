@@ -12,11 +12,11 @@ This repository contains a FastAPI-based intent recognition service, containeriz
 
 **NLP Integration:**  Gemini API
 
-**Database:** MongoDB / PostgreSQL (optional)
+**Database:** MongoDB
 
 **Containerization:** Docker
 
-**Deployment:** Kubernetes / DockerHub (bonus)
+**Deployment:** DockerHub , Kubernetes, AWS
 # Installation & setup
 
 ## Prerequisites
@@ -26,7 +26,8 @@ Ensure you have the following installed:
 
 - Docker
 
-- MongoDB/PostgreSQL (optional)
+- MongoDB
+
 
 ### Option 1: Clone the Repository
 
